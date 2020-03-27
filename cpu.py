@@ -80,6 +80,30 @@ class CPU:
 
                 self.fl[0] = 0
                 self.fl[1] = 0
+        elif op == 'AND':
+            self.reg[reg_a] &= self.reg[reg_b]
+        
+        elif op == 'OR':
+            self.reg[reg_a] |= self.reg[reg_b]
+
+        elif op == 'XOR':
+            self.reg[reg_a] ^= self.reg[reg_b]
+
+        elif op == 'NOT':
+            mask = 0b11111111
+            # this is tricky, you have to use a mask
+            # https://stackoverflow.com/questions/31151107/how-do-i-do-a-bitwise-not-operation-in-python
+            self.reg[reg_a] ^= mask
+
+        elif op == 'SHL':
+            self.reg[reg_a] <<= self.reg[reg_b]
+
+        elif op == 'SHR':
+            self.reg[reg_a] >>= self.reg[reg_b]       
+
+        elif op == 'SHR':
+            # https://stackoverflow.com/questions/3072665/bitwise-and-in-place-of-modulus-operator
+            self.reg[reg_a] %= self.reg[reg_b]                    
 
         #elif op == "SUB": etc
         else:
